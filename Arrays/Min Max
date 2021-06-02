@@ -1,0 +1,7 @@
+//https://www.interviewbit.com/problems/max-min-05542f2f-69aa-4253-9cc7-84eb7bf739c4/?ref=similar_problems
+
+int Solution::solve(vector<int> &A) {
+    int a=*max_element(A.begin(),A.end());
+    int b=*min_element(A.begin(),A.end());
+    return a+b;
+}
