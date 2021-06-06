@@ -1,0 +1,24 @@
+//https://www.interviewbit.com/problems/palindrome-integer/
+int Solution::isPalindrome(int A) {
+    
+    string s=to_string(A);
+    string s2;
+    for(int i=s.size()-1;i>=0;i--){
+        s2+=s[i];
+    }
+    return s==s2? 1:0;
+    
+    /*Not work for neg
+    int r=0;
+    int c;
+    while(A!=0){
+        int c=A%10;
+        int r=r*10+c;
+        A/=10;
+    }
+    if(r==A){
+        return true;
+    }
+    return 0;
+    */
+}
