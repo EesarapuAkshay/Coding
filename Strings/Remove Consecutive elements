@@ -1,0 +1,21 @@
+//https://www.interviewbit.com/problems/remove-consecutive-characters/
+string Solution::solve(string A, int B) {
+    //int n=A.size();
+ 
+    for(int i=0;i<A.size();i++){
+         int count=0;
+        for(int j=0;j<B;j++){
+            if(A[i]!=A[i+j]){
+                break;
+            }
+            else{
+                count++;
+            }
+        }
+        if(count==B){
+            A.erase(i,B);
+            i--;
+        }
+    }
+    return A;
+}
