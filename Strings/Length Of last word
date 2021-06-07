@@ -1,0 +1,14 @@
+//https://www.interviewbit.com/problems/length-of-last-word/
+int Solution::lengthOfLastWord(const string A) {
+    int i=A.length()-1;
+    int count=0;
+    while(A[i]==' ' && i>=0){
+        i--;
+    }
+    while(i>=0 && A[i]!=' '){
+        count++;
+        i--;
+    }
+    return count;
+    
+}
