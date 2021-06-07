@@ -1,0 +1,30 @@
+//https://www.interviewbit.com/problems/reverse-the-string/
+string Solution::solve(string A) {
+    stack<string> s;
+    int i=0;
+    int n=A.size();
+    
+    while(i<n)
+    {
+        string temp="";
+        while(i<n && A[i]!=' '){
+            temp.push_back(A[i]);
+            i++;
+        }
+        if(temp!=""){
+            s.push(temp);
+        }
+        i++;
+    }
+    A="";
+    while(!s.empty()){
+        A+=s.top();
+        if(s.size()>1){
+            A+=" ";
+        }
+        s.pop();
+    }
+    return A;
+    
+}
+
