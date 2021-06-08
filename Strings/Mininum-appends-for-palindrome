@@ -1,0 +1,19 @@
+//https://www.interviewbit.com/problems/minimum-appends-for-palindrome/
+int Solution::solve(string A) {
+    int i=0;
+    int n=A.size();
+    int j=n-1;
+    int count=0;
+    while(i<=j){
+        if(A[i]!=A[j]){
+            j=n-1;
+            count++;
+            i=count;
+        }
+        else{
+            i++;
+            j--;
+        }
+    }
+    return count;
+}
