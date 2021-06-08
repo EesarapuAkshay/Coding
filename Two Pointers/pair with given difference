@@ -1,0 +1,14 @@
+//https://www.interviewbit.com/problems/pair-with-given-difference/
+int Solution::solve(vector<int> &A, int B) {
+    unordered_map<int,int> m;
+    
+    for(auto x:A){
+        if(m[x-B] || m[x+B]){
+            return 1;
+        }
+        else{
+            m[x]++;
+        }
+    }
+    return 0;
+}
