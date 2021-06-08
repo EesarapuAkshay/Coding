@@ -1,0 +1,51 @@
+//https://www.interviewbit.com/problems/roman-to-integer/
+int Solution::romanToInt(string s) {
+           map<char,int> mp;
+            mp['I']=1;
+            mp['V']=5;
+            mp['X']=10;
+            mp['L']=50;
+            mp['C']=100;
+            mp['D']=500;
+            mp['M']=1000;
+            int summ=0,i;
+            for(i=0;i<s.length()-1;i++){
+                if(mp[s[i]]<mp[s[i+1]]){
+                    summ=summ-mp[s[i]];
+                }
+                else{
+                    summ+=mp[s[i]];
+                }
+            }
+        summ+=mp[s[i]];
+        return summ;
+    
+    
+    
+    
+    
+    
+    /* it will work for parital testcases 
+        if(s.size()==0) return 0;
+        int n=s.size();
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            switch(s[i])
+            {
+                case 'I':if(s[i+1]=='V'|| s[i+1]=='X') count-=1; else count+=1; break;
+                case 'V':count+=5; break;
+                case 'X': if(s[i+1]=='L' || s[i+1]=='C') count-=10; else count+=10; break;
+                case 'L':count+=50; break;
+                case 'C':if(s[i+1]=='D' && s[i+1]=='M') count-=100; else count+=100; break;
+                case 'D':count+=500; break;
+                case 'M':count+=1000; break; 
+            }
+          
+        }
+        return count;
+        
+        */
+    
+    
+}
