@@ -1,0 +1,17 @@
+//https://www.interviewbit.com/problems/smaller-or-equal-elements/
+int Solution::solve(vector<int> &A, int B) {
+    int low=0;
+    int high=A.size()-1;
+    int count=0;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(A[mid]<=B){
+           count=mid+1;
+           low=mid+1;
+        }
+        if(A[mid]>B){
+          high=mid-1;
+        }
+    }
+   return count;
+}
