@@ -1,0 +1,27 @@
+//https://www.interviewbit.com/problems/palindrome-list/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+int Solution::lPalin(ListNode* A) {
+    stack<int> s;
+    queue<int> q;
+    while(A){
+        s.push(A->val);
+        q.push(A->val);
+        A=A->next;
+    }
+    while(!s.empty() && !q.empty()){
+        if(s.top()!=q.front()){
+            return false;
+        }
+        //int k=q.front();
+        s.pop();
+        q.pop();
+    }
+    return true;
+}
