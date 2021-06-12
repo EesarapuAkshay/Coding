@@ -1,0 +1,33 @@
+//https://www.interviewbit.com/problems/evaluate-expression/
+int Solution::evalRPN(vector<string> &A) {
+    stack<string> s;
+    
+    for(int i=0;i<A.size();i++){
+        if(A[i]=="*" || A[i]=="+" || A[i]=="-" || A[i]=="/"){
+            int x1=stoi(s.top());
+            s.pop();
+            int x2=stoi(s.top());
+            s.pop();
+            if(A[i]=="+"){
+                s.push(to_string(x1+x2));
+            }
+            else if(A[i]=="/"){
+                 s.push(to_string(x2/x1));
+            }
+            else if(A[i]=="-"){
+                 s.push(to_string(x2-x1));
+            }
+            else if(A[i]=="*"){
+                 s.push(to_string(x1*x2));
+            }
+        }
+        else{
+            s.push(A[i]);
+        }
+    }
+    if(s.size()==1){
+        return stoi(s.top());
+    }
+    return 0;
+    
+}
