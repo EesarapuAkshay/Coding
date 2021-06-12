@@ -1,0 +1,20 @@
+//https://www.interviewbit.com/problems/swap-list-nodes-in-pairs/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::swapPairs(ListNode* A) {
+    ListNode* p=A;
+    while(p && p->next){
+        int temp=p->val;
+        p->val=p->next->val;
+        p->next->val=temp;
+        p=p->next->next;
+    }
+    
+    return A;
+}
