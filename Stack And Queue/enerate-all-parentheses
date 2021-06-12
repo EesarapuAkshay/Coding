@@ -1,0 +1,28 @@
+//https://www.interviewbit.com/problems/generate-all-parentheses/
+int Solution::isValid(string A) {
+    int c=0,d=0,e=0;
+    for(int i=0;i<A.size();i++){
+        if(A[i]=='('){
+            c++;
+        }
+        else if(A[i]==')'){
+            c--;
+        }
+        else if(A[i]=='{'){
+            d++;
+        }
+        else if(A[i]=='}'){
+            d--;
+        }
+        else if(A[i]=='['){
+            e++;
+        }
+        else{
+            e--;
+        }
+    }
+    if(c==0 && d==0 && e==0){
+        return 1;
+    }
+    return 0;
+}
