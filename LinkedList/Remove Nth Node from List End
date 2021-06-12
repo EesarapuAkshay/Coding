@@ -1,0 +1,36 @@
+//https://www.interviewbit.com/problems/remove-nth-node-from-list-end/
+/*
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::removeNthFromEnd(ListNode* A, int B) {
+    
+  
+    ListNode*p=A;
+    ListNode*q=NULL;
+    int count=0;
+    while(p){
+        count++;
+        p=p->next;
+    }
+    if(count==0) return A;
+    p=A;
+    if(B>=count){
+        A=A->next;
+        return A;
+    }
+    int k=count-B;
+    for(int i=0;i<k;i++){
+         q=p;
+        p=p->next;
+
+    }
+       q->next=p->next;
+      // delete p;
+    
+    return A;
+}
