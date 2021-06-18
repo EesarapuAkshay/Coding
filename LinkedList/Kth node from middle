@@ -1,0 +1,32 @@
+//https://www.interviewbit.com/old/problems/kth-node-from-middle/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+int Solution::solve(ListNode* A, int B) {
+    ListNode *p=A;
+    int count=0;
+    while(p){
+        count++;
+        p=p->next;
+    }
+    int requried_node = (count/2)+1-B;
+    if(requried_node<=0){
+        return -1;
+    }
+    p=A;
+    count=0;
+    while(p){
+        count++;
+        if(count==requried_node){
+            return p->val;
+        }
+        p=p->next;
+        
+    }
+    
+}
