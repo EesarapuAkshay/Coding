@@ -1,0 +1,48 @@
+//https://www.interviewbit.com/old/problems/reorder-list/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::reorderList(ListNode* A) {
+    stack<ListNode*>s;
+    int count=0;
+    ListNode* p=A;
+    while(p!=NULL){
+        p=p->next;
+        count++;
+    }
+    p=A;
+    int temp=count;
+    while(temp--){
+        if(temp<count/2){
+           s.push(p);
+        }
+        p=p->next;
+        
+    }
+    p=A;
+    while(!s.empty()){
+        ListNode*temp=p->next;
+        p->next=s.top();
+        if(s.top()==temp){
+            s.top()->next=NULL;
+            break;
+        }
+        else{
+            s.top()->next=temp;
+            p=temp;
+            if(s.size()==1)
+            temp->next=NULL;
+            
+            s.pop();
+        }
+    }
+    
+    return A;
+    
+    
+}
