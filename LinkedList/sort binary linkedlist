@@ -1,0 +1,25 @@
+//https://www.interviewbit.com/old/problems/sort-binary-linked-list/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::solve(ListNode* A) {
+    //ListNode*p=A;
+    if(A==NULL || A->next==NULL){
+        return A;
+    }
+    ListNode *q=A;
+    ListNode *r=A;
+    while(q!=NULL){
+        if(q->val!=1){
+            swap(q->val,r->val);
+            r=r->next;
+        }
+        q=q->next;
+    }
+    return A;
+}
