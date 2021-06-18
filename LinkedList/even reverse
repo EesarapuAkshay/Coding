@@ -1,0 +1,31 @@
+//https://www.interviewbit.com/old/problems/even-reverse/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::solve(ListNode* A) {
+    stack<ListNode*> s;
+    ListNode* p=A;
+    //ListNode *q=A;
+    
+    if(A==NULL || A->next==NULL) return A;
+    
+    while(p && p->next){
+        s.push(p->next);
+        p->next=p->next->next;
+        p=p->next;
+    }
+    p=A;
+    while(!s.empty()){
+        ListNode *q=p->next;
+        p->next=s.top();
+        p->next->next=q;
+        p=p->next->next;
+        s.pop();
+    }
+    return A;
+}
