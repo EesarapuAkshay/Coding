@@ -1,0 +1,41 @@
+//https://www.interviewbit.com/old/problems/k-reverse-linked-list/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::reverseList(ListNode* A, int B) {
+    if(B==1 || A==NULL){
+        return A;
+    }
+    ListNode* dummy=new ListNode(0);
+    dummy->next=A;
+    ListNode *p=dummy;
+    ListNode *q=dummy;
+    ListNode *r=dummy;
+    int count=0;
+    while(q->next!=0){
+        count++;
+        q=q->next;
+    }
+    
+    while(count>=B){
+        q=p->next;
+        r=q->next;
+        for(int i=1;i<B;i++){
+            q->next=r->next;
+            r->next=p->next;
+            p->next=r;
+            r=q->next;
+        }
+        count=count-B;
+        p=q;
+        
+        
+    }
+    return dummy->next;
+    
+}
