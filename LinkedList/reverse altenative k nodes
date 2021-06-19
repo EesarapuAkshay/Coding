@@ -1,0 +1,40 @@
+//https://www.interviewbit.com/old/problems/reverse-alternate-k-nodes/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::solve(ListNode* A, int B) {
+   ListNode*p;
+   ListNode*q;
+   int i;
+   stack<int> s;
+   bool flag=true;
+   for(i=1,p=A,q=A;p!=NULL;i++,p=p->next){
+       if(i%B==0){
+           s.push(p->val);
+           if(flag){
+               while(q!=p->next){
+                   q->val=s.top();
+                   s.pop();
+                   q=q->next;
+               }
+               flag=false;
+           }
+           else{
+               while(s.empty()){
+                  s.pop();
+               }
+               q=p->next;
+               flag=true;
+           }
+       }else{
+          s.push(p->val); 
+       }
+   }
+
+   return A;
+}
