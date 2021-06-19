@@ -1,0 +1,21 @@
+//https://www.interviewbit.com/old/problems/check-palindrome/
+int Solution::solve(string A) {
+    map<char,int> m;
+    int s=0;
+    for(auto x:A){
+        m[x]++;
+    }
+    
+    
+    for(auto x:m){
+        if(x.second%2==1){
+            s++;
+        }
+    }
+    
+    if(s>1){
+        return 0;
+    }
+    
+    return 1;
+}
