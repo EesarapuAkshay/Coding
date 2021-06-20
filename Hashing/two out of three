@@ -1,0 +1,43 @@
+//https://www.interviewbit.com/old/problems/two-out-of-three/
+vector<int> Solution::solve(vector<int> &A, vector<int> &B, vector<int> &C) {
+    map<int,int> m1,m2,m3;
+    set<int> s;
+    vector<int> v;
+    
+    for(int i=0;i<A.size();i++){
+        m1.insert({A[i],i});
+    }
+    for(int i=0;i<B.size();i++){
+        m2.insert({B[i],i});
+    }
+    for(int i=0;i<C.size();i++){
+        m3.insert({C[i],i});
+    }
+    //check whether it found in two out of three
+    
+    for(int i=0;i<A.size();i++){
+        if(m2.find(A[i])!=m2.end() || m3.find(A[i])!=m3.end()){
+            s.insert(A[i]);
+        }
+    }
+    
+    for(int i=0;i<B.size();i++){
+        if(m1.find(B[i])!=m1.end() || m3.find(B[i])!=m3.end()){
+            s.insert(B[i]);
+        }
+    }
+    
+    for(int i=0;i<C.size();i++){
+        if(m2.find(C[i])!=m2.end() || m1.find(C[i])!=m1.end()){
+            s.insert(C[i]);
+        }
+    }
+    
+    for(auto x:s){
+        v.push_back(x);
+    }
+    
+    return v;
+
+}
+
