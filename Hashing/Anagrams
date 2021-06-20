@@ -1,0 +1,17 @@
+//https://www.interviewbit.com/old/problems/anagrams/
+vector<vector<int> > Solution::anagrams(const vector<string> &A) {
+    map<string,vector<int>> m;
+    vector<vector<int>> v;
+    
+    for(int i=0;i<A.size();i++){
+        string dup=A[i];
+        sort(dup.begin(),dup.end());
+        m[dup].push_back(i+1);
+    }
+    
+    for(auto it:m){
+        v.push_back(it.second);
+    }
+    
+    return v;
+}
