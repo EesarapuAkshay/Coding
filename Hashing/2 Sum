@@ -1,0 +1,16 @@
+//https://www.interviewbit.com/old/problems/2-sum/
+vector<int> Solution::twoSum(const vector<int> &A, int B) {
+    vector<int> v;
+    unordered_map<int,int>m;
+    int cur;
+    for(int i=0;i<A.size();i++){
+        cur=A[i];
+        if(m.find(B-cur)!=m.end()){
+            v.push_back(m[B-cur]+1);
+            v.push_back(i+1);
+            return v;
+        }
+       m.insert({A[i],i});
+    }
+    return v;
+}
