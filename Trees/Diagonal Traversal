@@ -1,0 +1,29 @@
+//https://www.interviewbit.com/old/problems/diagonal-traversal/
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<int> Solution::solve(TreeNode* A) {
+    queue<TreeNode*> s;
+    vector<int> v;
+    s.push(A);
+    TreeNode*r=A;
+    while(!s.empty()){
+        r=s.front();
+        s.pop();
+        while(r){
+            v.push_back(r->val);
+            if(r->left) {
+                s.push(r->left);
+            }
+            r=r->right;
+        }
+    }
+    return v;
+    
+}
