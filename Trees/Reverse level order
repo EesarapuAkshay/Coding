@@ -1,0 +1,28 @@
+//https://www.interviewbit.com/old/problems/reverse-level-order/
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<int> Solution::solve(TreeNode* A) {
+    queue<TreeNode*> q;
+    vector<int> v;
+    q.push(A);
+    TreeNode* r=A;
+    while(!q.empty()){
+        r=q.front();
+        q.pop();
+        v.push_back(r->val);
+        
+        if(r->right) q.push(r->right);
+        if(r->left) q.push(r->left);
+        
+    }
+    reverse(v.begin(),v.end());
+    
+    return v;
+}
