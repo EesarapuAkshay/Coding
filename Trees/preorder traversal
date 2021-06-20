@@ -1,0 +1,27 @@
+//https://www.interviewbit.com/old/problems/preorder-traversal/
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<int> Solution::preorderTraversal(TreeNode* A) {
+    stack<TreeNode*> s;
+    vector<int> ans;
+    TreeNode *t=A;
+    while(t!=NULL || !s.empty()){
+        while(t!=NULL){
+            ans.push_back(t->val);
+            s.push(t);
+            t=t->left;
+        }
+        t=s.top();
+        s.pop();
+        t=t->right;
+    }
+    
+    return ans;
+}
