@@ -1,0 +1,43 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ //https://www.interviewbit.com/old/problems/zigzag-level-order-traversal-bt/
+vector<vector<int> > Solution::zigzagLevelOrder(TreeNode* A) {
+    queue<TreeNode*> q;
+    vector<int> v;
+    vector<vector<int>> ans;
+    q.push(A);
+    TreeNode* r=A;
+    bool flag=true;
+    while(!q.empty()){
+        int s=q.size();
+        while(s--){
+             r=q.front();
+             q.pop();
+            v.push_back(r->val);
+            
+            if(r->left)  q.push(r->left);
+            if(r->right) q.push(r->right);
+          
+        }
+        if(flag){
+            ans.push_back(v);
+            v.clear();
+            flag=false;
+        }
+        else{
+            reverse(v.begin(),v.end());
+            ans.push_back(v);
+            v.clear();
+            flag=true;
+        }
+        
+    }
+    return ans;
+}
