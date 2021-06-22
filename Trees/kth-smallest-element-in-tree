@@ -1,0 +1,27 @@
+//https://www.interviewbit.com/old/problems/kth-smallest-element-in-tree/
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+int Solution::kthsmallest(TreeNode* A, int B) {
+    stack<TreeNode*> q;
+    vector<int> v;
+    TreeNode *r=A;
+    while(r!=NULL || !q.empty()){
+        while(r!=NULL){
+            q.push(r);
+            r=r->left;
+        }
+        r=q.top();
+        v.push_back(r->val);
+        q.pop();
+        r=r->right;
+    }
+    
+    return v[B-1];
+}
