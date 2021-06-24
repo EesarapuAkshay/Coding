@@ -1,0 +1,40 @@
+//https://www.interviewbit.com/old/problems/populate-next-right-pointers-tree/
+/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+void Solution::connect(TreeLinkNode* A) {
+    queue<TreeLinkNode*>q;
+    q.push(A);
+    A->next=NULL;
+    while(!q.empty()){
+        vector<TreeLinkNode*> level;
+        int st=q.size();
+        for(int i=0;i<st;i++)
+        {
+            TreeLinkNode*r=q.front();
+            q.pop();
+            
+            if(r->left!=NULL) {
+                q.push(r->left);
+                level.push_back(r->left);
+            }
+            if(r->right!=NULL){
+                q.push(r->right);
+                level.push_back(r->right);
+            }
+        }
+        for(int i=0;i<level.size();i++){
+            if(i+1==level.size()){
+                level[i]->next=NULL;
+                break;
+            }
+            level[i]->next=level[i+1];
+        }
+        
+    }
+}
