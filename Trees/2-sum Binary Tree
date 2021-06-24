@@ -8,7 +8,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-bool solve(TreeNode* r,unordered_map<int,int> m,int k){
+bool solve(TreeNode* r,unordered_map<int,int> &m,int k){
      if(!r) return 0;
      if(m.find(k-r->val)!=m.end()){
          return 1;
