@@ -1,0 +1,11 @@
+//https://www.interviewbit.com/old/problems/best-time-to-buy-and-sell-stocks-i/
+int Solution::maxProfit(const vector<int> &A) {
+    int n=A.size();
+    if(n==0) return 0;
+    int mn=A[0],mx=0;
+    for(int i=1;i<n;i++){
+       mn=min(mn,A[i]);
+       mx=max(mx,A[i]-mn);
+    }
+    return mx;
+}
