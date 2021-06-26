@@ -1,0 +1,15 @@
+//https://www.interviewbit.com/old/problems/jump-game-array/
+int Solution::canJump(vector<int> &A) {
+    int n=A.size();
+    int inx=0;
+    for(int i=0;i<n;i++){
+        if(inx>=A.size()-1) return 1;
+        if(A[i]==0 && i>=inx) return 0;
+        else{
+            if(i+A[i]>inx){
+                inx=i+A[i];
+            }
+        }
+    }
+    return 1;
+}
