@@ -1,0 +1,23 @@
+//https://www.interviewbit.com/old/problems/subset-sum-problem/
+bool issubset(vector<int> &A, int s,int n,vector<vector<int>>&dp){
+    if(n==0 && s!=0) return 0;
+    if(s==0) return 1;
+    if(dp[n][s]!=-1) return dp[n][s];
+    
+    if(A[n-1]<=s){
+        return dp[n][s]=issubset(A,s-A[n-1],n-1,dp) || issubset(A,s,n-1,dp);
+    }
+    else{
+        return dp[n][s]=issubset(A,s,n-1,dp);
+    }
+    
+}
+int Solution::solve(vector<int> &A, int B) {
+    int n=A.size();
+    vector<vector<int>> dp(n+1,vector<int> (B+1,-1));
+    
+    if(issubset(A,B,n,dp)){
+        return 1;
+    }
+    return 0;
+}
