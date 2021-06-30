@@ -1,0 +1,38 @@
+//https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/
+#include <bits/stdc++.h>
+using namespace std;
+int count(int a[],int n,int sum){
+	//store values 
+	
+	int dp[n+1][sum+1];
+	
+	//row and colum for 1st is zero
+	dp[0][0]=1;
+	for(int i=1;i<=sum;i++){
+		dp[0][i]=0;
+	}
+	
+	for(int i=1;i<=n;i++){
+		dp[i][0]=1;
+	}
+	
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=sum;j++){
+			if(a[i-1]<=j){
+				dp[i][j]=dp[i-1][j]+dp[i-1][j-a[i-1]];
+			}
+			else{
+				dp[i][j]=dp[i-1][j];
+			}
+		}
+	}
+	
+	return dp[n][sum];
+}
+int main(){
+	int n = 4;
+    int a[] = {3,3,3,3};
+    int sum = 6;
+    
+    cout<<(count(a,n,sum));
+}
