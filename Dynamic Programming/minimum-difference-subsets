@@ -1,0 +1,67 @@
+//https://www.interviewbit.com/old/problems/minimum-difference-subsets/
+int Solution::solve(vector<int> & A){
+    int range=0;
+    for(int i=0;i<A.size();i++){
+        range+=A[i];
+    }
+    int n=A.size();
+    bool dp[n+1][range+1];
+     int sum=range;
+    
+    for(int i=0;i<=n;i++){
+        dp[i][0]=true;
+    }
+    for(int j=1;j<=sum;j++){
+        dp[0][j]=false;
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=sum;j++){
+            if(A[i-1]<=j){
+                dp[i][j]= (dp[i-1][j] || dp[i-1][j-A[i-1]]);
+            }
+            else{
+                dp[i][j]=dp[i-1][j];
+            }
+        }
+    }
+    vector<int> v;
+    for(int j=0;j<sum+1;j++){
+        if(dp[n][j]==true){
+            v.push_back(j);
+        }
+    }
+    int mn=INT_MAX;
+    for(int i=0;i<=v.size()/2;i++){
+        mn=min(mn,abs(range-2*v[i]));
+    }
+    
+    return mn;
+}
+/*
+int issubset(vector<int> &A,int n,int s,vector<vector<int>> &dp){
+    if(n==0 & s!=0) return 0;
+    if(s==0) return 1;
+    
+    if(dp[n][s]!=-1) return dp[n][s];
+    if(A[n-1]<=s){
+        return dp[n][s]=issubset(A,n-1,s-A[n-1],dp) || issubset(A,n-1,s,dp);
+    }
+    else{
+       return dp[n][s]=issubset(A,n-1,s,dp);
+    }
+}
+int Solution::solve(vector<int> &A) {
+    int sum=0;
+    for(int i=0;i<A.size();i++){
+        sum+=A[i];
+    }
+    vector<vector<int>> dp(A.size()+1,vector<int>(sum/2+1,-1));
+    int m=INT_MIN;
+    for(int i=0;i<=sum/2;i++){
+        if(issubset(A,A.size(),i,dp)){
+            m=max(m,i);
+        }
+    }
+    return sum-2*m;
+    
+}*/
