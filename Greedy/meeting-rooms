@@ -1,0 +1,23 @@
+//https://www.interviewbit.com/old/problems/meeting-rooms/
+int Solution::solve(vector<vector<int> > &A) {
+    int ans=0;
+    int n=A.size();
+    vector<pair<int,int>> v;
+    for(int i=0;i<A.size();i++){
+        v.push_back({A[i][1],-1});
+        v.push_back({A[i][0],1});
+    }
+    sort(v.begin(),v.end());
+    int res=0;
+    for(int i=0;i<v.size();i++){
+        res=res+v[i].second;
+        if(res>ans){
+            ans=res;
+        }
+    }
+    
+    return ans;
+    
+}
+  
+
