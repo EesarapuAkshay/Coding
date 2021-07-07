@@ -1,0 +1,18 @@
+//https://www.interviewbit.com/old/problems/majority-element/
+int Solution::majorityElement(const vector<int> &A) {
+    int n=A.size();
+    map<int,int> m;
+    for(int i=0;i<n;i++){
+        m[A[i]]++;
+    }
+    int num=n/2;
+    int ans;
+    for(auto x:m){
+        if(x.second>num){
+            ans=x.first;
+            break;
+        }
+    }
+    return ans;
+   
+}
