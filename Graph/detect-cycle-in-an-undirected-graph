@@ -1,0 +1,44 @@
+//https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1#
+class Solution 
+{
+    bool dfs(vector<int>adj[],bool vis[],int s){
+       deque<int> dq;
+       dq.push_back(s);
+       
+       while(!dq.empty()){
+           int p=dq.front();
+           dq.pop_front();
+           
+           if(vis[p]==true){
+               return true;
+           }
+           
+           vis[p]=true;
+           
+           for(int i:adj[p]){
+               if(!vis[i]){
+                   dq.push_back(i);
+               }
+           }
+       }
+       return false;
+        
+    }
+    public:
+    //Function to detect cycle in an undirected graph.
+	bool isCycle(int V, vector<int>adj[])
+	{
+	    // Code here
+	    bool vis[V]={0};
+	    for(int i=0;i<V;i++){
+	        if(vis[i]==false){
+	          if(dfs(adj,vis,i)==true)
+	          {
+	               return true;
+	          }
+	        }
+	    }
+	    return false;
+	    
+	}
+};
