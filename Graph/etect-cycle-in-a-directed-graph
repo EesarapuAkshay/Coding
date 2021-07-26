@@ -1,0 +1,42 @@
+/https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1#
+class Solution
+{
+    bool dfs(vector<int> adj[],int s,bool vis[],bool res[]){
+	    vis[s]=true;
+	    res[s]=true;
+	    
+	    for(int u:adj[s]){
+	        if(vis[u]==false){
+	            if(dfs(adj,u,vis,res)==true){
+	                return true;
+	            }
+	        }
+	        else if(res[u]==true){
+	            return true;
+	        }
+	    }
+	        
+	        res[s]=false;
+	        return false;
+	    }
+
+    public:
+	//Function to detect cycle in a directed graph.
+	
+	bool isCyclic(int V, vector<int> adj[]) 
+	{
+	   	// code here
+	   	bool vis[V+1]={0},res[V+1]={0};
+	   	for(int i=0;i<V;i++){
+	   	    if(vis[i]==false){
+	   	        if(dfs(adj,i,vis,res)==true){
+	   	            return true;
+	   	        }
+	   	    }
+	   	}
+	   	
+	   	return false;
+	   	
+	   	
+	}
+};
