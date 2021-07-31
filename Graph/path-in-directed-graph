@@ -1,0 +1,24 @@
+//https://www.interviewbit.com/problems/path-in-directed-graph/
+void dfs(int s, vector<vector<int> > &adj,vector<bool> &vis){
+    vis[s]=1;
+
+    for(auto x:adj[s]){
+       if(!vis[x]){
+          dfs(x,adj,vis);
+       }
+    }
+
+}
+int Solution::solve(int A, vector<vector<int> > &B) {
+    vector<vector<int>> adj(A+1);
+    vector<bool> vis(A+1,0);
+
+    for(int i=0;i<B.size();i++){
+        adj[B[i][0]].push_back(B[i][1]);
+    }
+    dfs(1,adj,vis);
+
+    if(vis[A]==1) return true;
+    return false;
+
+}
