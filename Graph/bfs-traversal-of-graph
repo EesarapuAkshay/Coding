@@ -1,0 +1,33 @@
+
+//https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1#
+class Solution
+{
+    public:
+    //Function to return Breadth First Traversal of given graph.
+	vector<int>bfsOfGraph(int V, vector<int> adj[])
+	{
+	    // Code here
+	    vector<int> res;
+	    vector<bool> vis(V,0);
+	    queue<int> q;
+	    q.push(0);
+	    vis[0]=1;
+	    while(!q.empty()){
+	        int x=q.front();
+	        q.pop();
+	        
+	        res.push_back(x);
+	        
+	        for(int d:adj[x]){
+	            if(!vis[d]){
+	                q.push(d);
+	                vis[d]=1;
+	            }
+	        }
+	    }
+	    
+	    return res;
+	    
+	    
+	}
+};
