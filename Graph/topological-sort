@@ -1,0 +1,33 @@
+//https://practice.geeksforgeeks.org/problems/topological-sort/1
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	void topo(int val,vector<int> &res,vector<bool>& vis,vector<int> adj[]){
+	    vis[val]=1;
+	    
+	    for(auto x:adj[val]){
+	        if(!vis[x]){
+	            topo(x,res,vis,adj);
+	        }
+	    }
+	    
+	    res.push_back(val);
+	}
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    vector<int> res;
+	    vector<bool> vis(V,0);
+	    
+	    for(int i=0;i<V;i++){
+	        if(!vis[i]){
+	            topo(i,res,vis,adj);
+	        }
+	    }
+	    
+	    reverse(res.begin(),res.end());
+	    
+	    return res;
+	}
+};
