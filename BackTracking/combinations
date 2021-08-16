@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/combinations/
+class Solution {
+public:
+    void helper(int index,int n,int b,vector<vector<int>> &res, vector<int> &aux){
+        
+        if(b==aux.size()){
+            res.push_back(aux);
+            return ;
+        }
+        
+        if(index==n+1){
+            return ;
+        }
+        aux.push_back(index);
+        helper(index+1,n,b,res,aux);
+        aux.pop_back();
+        helper(index+1,n,b,res,aux);
+        
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> aux;
+        helper(1,n,k,res,aux);
+        return res;
+    }
+};
