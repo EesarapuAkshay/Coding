@@ -1,0 +1,68 @@
+//https://leetcode.com/problems/4sum/
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        
+        int n=nums.size();
+        sort(nums.begin(),nums.end());
+        set<vector<int>>st;
+        vector<vector<int>> res;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int ntarget=target-nums[i]-nums[j];
+                int x=j+1;
+                int y=n-1;
+                
+                while(x<y){
+                    int sum=nums[x]+nums[y];
+                    
+                    if(sum>ntarget){
+                        y--;
+                    }
+                    else if(sum<ntarget){
+                        x++;
+                    }
+                    else{
+                        st.insert({nums[i],nums[j],nums[x],nums[y]});
+                        x++;
+                        y--;
+                    }
+                }
+            }
+        }
+        
+        for(auto x:st){
+            res.push_back(x);
+        }
+        
+        return res;
+        /*
+        sort(nums.begin(),nums.end());
+        set<vector<int>> ans;
+        vector<vector<int>> res;
+        int i,j,k;
+        int n=nums.size();
+        int d=n-1;
+        for( i=0;i<d-2;i++){
+            for( j=i+1;j<d-1;j++){
+                for( k=j+1,d=n-1;k<d;k++ ){
+                    if(nums[i]+nums[j]+nums[k]+nums[d]==target){
+                        ans.insert({nums[i],nums[j],nums[k],nums[d]});
+                    }
+                    else if(nums[i]+nums[j]+nums[k]+nums[d]>target){
+                        d--;
+                        k--;
+                    }
+                }
+            }
+        }
+        
+        for(auto x:ans){
+            res.push_back(x);
+        }
+        
+        return res;
+        */
+        
+    }
+};
